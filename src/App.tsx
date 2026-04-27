@@ -1,5 +1,5 @@
-import React from 'react'
+import InputPage from "./pages/InputPage";
 
 export default function App() {
-  return <div style={{padding:20}}>Super Retirement Planner — scaffold</div>
+  return <InputPage />;
 }
