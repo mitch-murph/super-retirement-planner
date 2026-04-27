@@ -3,18 +3,19 @@ export type ProjectionInputs = {
   retirementAge: number;
   currentSuperBalance: number;
   annualSalary: number;
-  employerContributionRate: number; // e.g. 0.11
-  voluntaryContribution: number;    // annual $
-  expectedReturnRate: number;       // e.g. 0.07
-  inflationRate: number;            // e.g. 0.025
-  feeRate: number;                  // e.g. 0.0065
-  salaryGrowthRate: number;         // e.g. 0.02
+  employerContributionRate: number;
+  voluntaryContribution: number;
+  expectedReturnRate: number;
+  inflationRate: number;
+  feeRate: number;
+  salaryGrowthRate: number;
 };
 
 export type ProjectionRow = {
   year: number;
   age: number;
   salary: number;
+  openingBalance: number;
   contributions: number;
   fees: number;
   balance: number;
@@ -25,7 +26,7 @@ export type ProjectionResult = {
   rows: ProjectionRow[];
   finalBalance: number;
   finalBalanceInflationAdjusted: number;
-  estimatedAnnualIncome: number; // 4% rule
+  estimatedAnnualIncome: number;
   yearsToRetirement: number;
 };
 
@@ -51,6 +52,7 @@ export function runProjection(inputs: ProjectionInputs): ProjectionResult {
 
   for (let i = 1; i <= years; i++) {
     const age = currentAge + i;
+    const openingBalance = balance;
     const employerContrib = salary * employerContributionRate;
     const totalContributions = employerContrib + voluntaryContribution;
     const growth = balance * expectedReturnRate;
@@ -63,6 +65,7 @@ export function runProjection(inputs: ProjectionInputs): ProjectionResult {
     rows.push({
       year: new Date().getFullYear() + i,
       age,
+      openingBalance,
       salary,
       contributions: totalContributions,
       fees,

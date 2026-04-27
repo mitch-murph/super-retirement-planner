@@ -4,6 +4,8 @@ import InputPanel from "../components/InputPanel";
 import SummaryMetrics from "../components/SummaryMetrics";
 import ProjectionChart from "../components/ProjectionChart";
 import ProjectionTable from "../components/ProjectionTable";
+import Insights from "../components/Insights";
+import PDFExportButton from "../pdf/PDFExportButton";
 
 const DEFAULT_INPUTS: ProjectionInputs = {
   currentAge: 30,
@@ -50,7 +52,20 @@ const sectionStyle: React.CSSProperties = {
 export default function InputPage() {
   const [inputs, setInputs] = useState<ProjectionInputs>(DEFAULT_INPUTS);
   const result: ProjectionResult = runProjection(inputs);
+
+  // Run a second projection without voluntary contributions for the impact calculation
+  const resultNoVoluntary: ProjectionResult = runProjection({ ...inputs, voluntaryContribution: 0 });
+
   const today = new Date().toLocaleDateString("en-AU", { day: "2-digit", month: "long", year: "numeric" });
+
+  const pdfInputs = {
+    ...inputs,
+    employerContributionRate: inputs.employerContributionRate * 100,
+    expectedReturnRate: inputs.expectedReturnRate * 100,
+    inflationRate: inputs.inflationRate * 100,
+    feeRate: inputs.feeRate * 100,
+    salaryGrowthRate: inputs.salaryGrowthRate * 100,
+  };
 
   return (
     <div style={pageStyle}>
@@ -66,10 +81,19 @@ export default function InputPage() {
               Retirement Outlook
             </h1>
           </div>
-          <div style={{ textAlign: "right" }}>
-            <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Prepared</p>
-            <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>{today}</p>
-            <p style={{ fontSize: "11px", color: "#999", marginTop: "4px" }}>Modelled projections only — not financial advice</p>
+          <div style={{ textAlign: "right", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+            <div>
+              <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Prepared</p>
+              <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>{today}</p>
+              <p style={{ fontSize: "11px", color: "#999", marginTop: "4px" }}>Modelled projections only — not financial advice</p>
+            </div>
+            <PDFExportButton
+              inputs={pdfInputs}
+              rows={result.rows}
+              retirementBalance={result.finalBalance}
+              annualRetirementIncome={result.estimatedAnnualIncome}
+              balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
+            />
           </div>
         </div>
 
@@ -108,6 +132,17 @@ export default function InputPage() {
             </div>
             <div style={sectionStyle}>
               <ProjectionChart result={result} />
+            </div>
+            <div style={sectionStyle}>
+              <Insights
+                rows={result.rows}
+                retirementBalance={result.finalBalance}
+                annualRetirementIncome={result.estimatedAnnualIncome}
+                inflationRate={inputs.inflationRate}
+                yearsToRetirement={result.yearsToRetirement}
+                voluntaryContribution={inputs.voluntaryContribution}
+                balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
+              />
             </div>
             <div style={{ ...sectionStyle, borderBottom: "none" }}>
               <ProjectionTable result={result} />
