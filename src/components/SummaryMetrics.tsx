@@ -13,6 +13,8 @@ const metricStyle: React.CSSProperties = {
   borderTop: `2px solid ${colors.borderStrong}`,
   paddingTop: "12px",
   paddingBottom: "16px",
+  display: "grid",
+  gridTemplateRows: "3em auto auto",
 };
 
 const valueStyle: React.CSSProperties = {
@@ -32,7 +34,7 @@ export default function SummaryMetrics({ result }: Props) {
   return (
     <div>
       <SectionHeading>Projection Summary</SectionHeading>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "16px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", alignItems: "start" }}>
         <div style={metricStyle}>
           <MetricLabel>Projected Balance at Retirement</MetricLabel>
           <p style={valueStyle}>{fmt(result.finalBalance)}</p>
