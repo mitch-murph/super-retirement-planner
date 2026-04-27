@@ -92,7 +92,7 @@ export default function ProjectionChart({ result }: Props) {
 
           {/* X axis labels — every 5 years */}
           {rows
-            .filter((_, i) => i % 5 === 0 || i === rows.length - 1)
+            .filter((_, i) => i % 5 === 0 || i === rows.length - 2)
             .map((row, _, arr) => {
               const i = rows.indexOf(row);
               return (
