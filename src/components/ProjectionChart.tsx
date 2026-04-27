@@ -9,8 +9,8 @@ export default function ProjectionChart({ result }: Props) {
   if (!rows.length) return null;
 
   const W = 640;
-  const H = 200;
-  const PAD = { top: 10, right: 20, bottom: 30, left: 60 };
+  const H = 210;
+  const PAD = { top: 10, right: 20, bottom: 40, left: 60 };
   const chartW = W - PAD.left - PAD.right;
   const chartH = H - PAD.top - PAD.bottom;
 
