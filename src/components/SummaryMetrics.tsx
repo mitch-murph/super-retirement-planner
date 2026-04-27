@@ -11,8 +11,6 @@ function fmt(n: number) {
 
 const metricStyle: React.CSSProperties = {
   borderTop: `2px solid ${colors.borderStrong}`,
-  paddingTop: "12px",
-  paddingBottom: "16px",
   display: "grid",
   gridTemplateRows: "3em auto auto",
 };

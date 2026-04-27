@@ -45,7 +45,7 @@ const reportHeaderStyle: React.CSSProperties = {
 };
 
 const sectionStyle: React.CSSProperties = {
-  padding: "32px 40px",
+  padding: "24px",
   borderBottom: "1px solid #e8e8e8",
 };
 
@@ -131,9 +131,6 @@ export default function InputPage() {
               <SummaryMetrics result={result} />
             </div>
             <div style={sectionStyle}>
-              <ProjectionChart result={result} />
-            </div>
-            <div style={sectionStyle}>
               <Insights
                 rows={result.rows}
                 retirementBalance={result.finalBalance}
@@ -143,6 +140,9 @@ export default function InputPage() {
                 voluntaryContribution={inputs.voluntaryContribution}
                 balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
               />
+            </div>
+            <div style={sectionStyle}>
+              <ProjectionChart result={result} />
             </div>
             <div style={{ ...sectionStyle, borderBottom: "none" }}>
               <ProjectionTable result={result} />
