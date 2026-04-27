@@ -1,4 +1,6 @@
 import { ProjectionResult } from "../engine/projection";
+import { colors, fontSizes, fontWeights } from "../theme";
+import SectionHeading from "./ui/SectionHeading";
 
 type Props = { result: ProjectionResult };
 
@@ -7,45 +9,32 @@ function fmt(n: number) {
 }
 
 const thStyle: React.CSSProperties = {
-  fontSize: "10px",
-  fontWeight: 700,
-  letterSpacing: "0.08em",
+  fontSize: fontSizes.sm,
+  fontWeight: fontWeights.bold,
+  letterSpacing: "0.06em",
   textTransform: "uppercase",
-  color: "#888",
+  color: colors.inkMuted,
   textAlign: "right",
   padding: "6px 10px",
-  borderBottom: "2px solid #1a1a1a",
+  borderBottom: `2px solid ${colors.borderStrong}`,
   whiteSpace: "nowrap",
 };
 
 const tdStyle: React.CSSProperties = {
-  fontSize: "12px",
-  color: "#1a1a1a",
+  fontSize: fontSizes.md,
+  color: colors.ink,
   textAlign: "right",
   padding: "6px 10px",
-  borderBottom: "1px solid #ebebeb",
+  borderBottom: `1px solid ${colors.border}`,
   fontVariantNumeric: "tabular-nums",
 };
 
 export default function ProjectionTable({ result }: Props) {
   return (
     <div>
-      <p
-        style={{
-          fontSize: "11px",
-          fontWeight: 700,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: "#888",
-          borderBottom: "1px solid #e0e0e0",
-          paddingBottom: "6px",
-          marginBottom: "16px",
-        }}
-      >
-        Year-by-Year Breakdown
-      </p>
+      <SectionHeading>Year-by-Year Breakdown</SectionHeading>
       <div style={{ overflowX: "auto" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "12px" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: fontSizes.sm }}>
           <thead>
             <tr>
               <th style={{ ...thStyle, textAlign: "left" }}>Year</th>
@@ -64,7 +53,7 @@ export default function ProjectionTable({ result }: Props) {
                 <td style={tdStyle}>{fmt(row.contributions)}</td>
                 <td style={tdStyle}>{fmt(row.fees)}</td>
                 <td style={{ ...tdStyle, fontWeight: 600 }}>{fmt(row.balance)}</td>
-                <td style={{ ...tdStyle, color: "#888" }}>{fmt(row.balanceInflationAdjusted)}</td>
+                <td style={{ ...tdStyle, color: colors.inkSubtle }}>{fmt(row.balanceInflationAdjusted)}</td>
               </tr>
             ))}
           </tbody>

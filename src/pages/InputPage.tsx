@@ -59,7 +59,7 @@ export default function InputPage() {
         {/* Report Header */}
         <div style={reportHeaderStyle}>
           <div>
-            <p style={{ fontSize: "10px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: "#888", marginBottom: "6px" }}>
+            <p style={{ fontSize: "12px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#555", marginBottom: "6px" }}>
               Superannuation Projection Report
             </p>
             <h1 style={{ fontSize: "22px", fontWeight: 700, margin: 0, letterSpacing: "-0.02em" }}>
@@ -67,9 +67,9 @@ export default function InputPage() {
             </h1>
           </div>
           <div style={{ textAlign: "right" }}>
-            <p style={{ fontSize: "11px", color: "#888", margin: 0 }}>Prepared</p>
-            <p style={{ fontSize: "13px", fontWeight: 600, margin: 0 }}>{today}</p>
-            <p style={{ fontSize: "10px", color: "#bbb", marginTop: "4px" }}>Modelled projections only — not financial advice</p>
+            <p style={{ fontSize: "12px", color: "#666", margin: 0 }}>Prepared</p>
+            <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>{today}</p>
+            <p style={{ fontSize: "11px", color: "#999", marginTop: "4px" }}>Modelled projections only — not financial advice</p>
           </div>
         </div>
 
@@ -86,11 +86,11 @@ export default function InputPage() {
           >
             <p
               style={{
-                fontSize: "11px",
+                fontSize: "12px",
                 fontWeight: 700,
-                letterSpacing: "0.1em",
+                letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: "#888",
+                color: "#555",
                 borderBottom: "1px solid #e0e0e0",
                 paddingBottom: "6px",
                 marginBottom: "20px",
@@ -122,9 +122,9 @@ export default function InputPage() {
             padding: "16px 40px",
             display: "flex",
             justifyContent: "space-between",
-            fontSize: "10px",
-            color: "#bbb",
-            letterSpacing: "0.04em",
+            fontSize: "12px",
+            color: "#999",
+            letterSpacing: "0.03em",
           }}
         >
           <span>Super Retirement Planner — Client-Side Projection Tool</span>

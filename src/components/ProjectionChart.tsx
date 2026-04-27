@@ -1,4 +1,6 @@
 import { ProjectionResult } from "../engine/projection";
+import { colors } from "../theme";
+import SectionHeading from "./ui/SectionHeading";
 
 type Props = { result: ProjectionResult };
 
@@ -28,20 +30,7 @@ export default function ProjectionChart({ result }: Props) {
 
   return (
     <div>
-      <p
-        style={{
-          fontSize: "11px",
-          fontWeight: 700,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          color: "#888",
-          borderBottom: "1px solid #e0e0e0",
-          paddingBottom: "6px",
-          marginBottom: "16px",
-        }}
-      >
-        Balance Growth Projection
-      </p>
+      <SectionHeading>Balance Growth Projection</SectionHeading>
       <svg
         viewBox={`0 0 ${W} ${H}`}
         style={{ width: "100%", height: "auto", display: "block" }}
@@ -63,8 +52,8 @@ export default function ProjectionChart({ result }: Props) {
                 x={-6}
                 y={scaleY(tick) + 4}
                 textAnchor="end"
-                fontSize={9}
-                fill="#aaa"
+                fontSize={11}
+                fill={colors.inkSubtle}
                 fontFamily="inherit"
               >
                 {fmtK(tick)}
@@ -112,8 +101,8 @@ export default function ProjectionChart({ result }: Props) {
                   x={i * barWidth + barWidth / 2}
                   y={chartH + 18}
                   textAnchor="middle"
-                  fontSize={9}
-                  fill="#aaa"
+                  fontSize={11}
+                  fill={colors.inkSubtle}
                   fontFamily="inherit"
                 >
                   {row.year}
@@ -127,11 +116,11 @@ export default function ProjectionChart({ result }: Props) {
         </g>
 
         {/* Legend */}
-        <g transform={`translate(${PAD.left},${H - 4})`}>
+        <g transform={`translate(${PAD.left},${H})`}>
           <rect x={0} y={-8} width={10} height={8} fill="#1a1a1a" opacity={0.85} />
-          <text x={14} y={0} fontSize={9} fill="#888" fontFamily="inherit">Nominal Balance</text>
+          <text x={14} y={0} fontSize={11} fill={colors.inkMuted} fontFamily="inherit">Nominal Balance</text>
           <line x1={90} x2={104} y1={-4} y2={-4} stroke="#999" strokeWidth={1.5} strokeDasharray="4 3" />
-          <text x={108} y={0} fontSize={9} fill="#888" fontFamily="inherit">Inflation-Adjusted</text>
+          <text x={108} y={0} fontSize={11} fill={colors.inkMuted} fontFamily="inherit">Inflation-Adjusted</text>
         </g>
       </svg>
     </div>
