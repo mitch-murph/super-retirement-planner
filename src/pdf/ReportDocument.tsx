@@ -40,12 +40,12 @@ export interface ReportInputs {
   retirementAge: number;
   currentSuperBalance: number;
   annualSalary: number;
-  employerContributionRate: number; // percentage e.g. 11
+  employerContributionRate: number;
   voluntaryContribution: number;
-  expectedReturnRate: number;       // percentage e.g. 7
-  inflationRate: number;            // percentage e.g. 2.5
-  feeRate: number;                  // percentage e.g. 0.65
-  salaryGrowthRate: number;         // percentage e.g. 2
+  expectedReturnRate: number;
+  inflationRate: number;
+  feeRate: number;
+  salaryGrowthRate: number;
 }
 
 interface ReportDocumentProps {
@@ -117,18 +117,6 @@ export default function ReportDocument({ inputs, rows, retirementBalance, annual
           </View>
         ))}
 
-        {/* Chart */}
-        <Text style={styles.sectionTitle}>Projected Balance Over Time</Text>
-        {chartRows.map((r) => (
-          <View key={r.year} style={styles.chartRow}>
-            <Text style={styles.chartLabel}>{r.age}</Text>
-            <View style={styles.chartBarBg}>
-              <View style={{ ...styles.chartBar, width: `${(r.balance / maxBalance) * 100}%` }} />
-            </View>
-            <Text style={styles.chartValue}>{fmt(r.balance)}</Text>
-          </View>
-        ))}
-
         {/* Insights */}
         <Text style={styles.sectionTitle}>Insights</Text>
         <View style={styles.insightsGrid}>
@@ -164,6 +152,20 @@ export default function ReportDocument({ inputs, rows, retirementBalance, annual
             </Text>
           </View>
         </View>
+      </Page>
+      
+      <Page size="A4" style={styles.page}>
+        {/* Chart */}
+        <Text style={styles.sectionTitle}>Projected Balance Over Time</Text>
+        {chartRows.map((r) => (
+          <View key={r.year} style={styles.chartRow}>
+            <Text style={styles.chartLabel}>{r.age}</Text>
+            <View style={styles.chartBarBg}>
+              <View style={{ ...styles.chartBar, width: `${(r.balance / maxBalance) * 100}%` }} />
+            </View>
+            <Text style={styles.chartValue}>{fmt(r.balance)}</Text>
+          </View>
+        ))}
 
         {/* Year-by-year table */}
         <Text style={styles.sectionTitle}>Year-by-Year Breakdown</Text>
