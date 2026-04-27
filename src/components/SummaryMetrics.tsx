@@ -34,7 +34,7 @@ export default function SummaryMetrics({ result }: Props) {
   return (
     <div>
       <SectionHeading>Projection Summary</SectionHeading>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "16px", alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "16px", alignItems: "start" }}>
         <div style={metricStyle}>
           <MetricLabel>Projected Balance at Retirement</MetricLabel>
           <p style={valueStyle}>{fmt(result.finalBalance)}</p>
