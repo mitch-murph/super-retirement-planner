@@ -152,6 +152,11 @@ export default function ReportDocument({ inputs, rows, retirementBalance, annual
             </Text>
           </View>
         </View>
+
+        {/* Disclaimer */}
+        <Text style={styles.disclaimer}>
+          Disclaimer: This report is a projection only and is not financial advice. It is based on assumptions that may not reflect actual future outcomes. Past performance is not a reliable indicator of future performance. Please consult a licensed financial adviser before making financial decisions.
+        </Text>
       </Page>
       
       <Page size="A4" style={styles.page}>
