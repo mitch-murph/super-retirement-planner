@@ -6,6 +6,7 @@ import ProjectionChart from "../components/ProjectionChart";
 import ProjectionTable from "../components/ProjectionTable";
 import Insights from "../components/Insights";
 import PDFExportButton from "../pdf/PDFExportButton";
+import XLSXExportButton from "../xlsx/XLSXExportButton";
 
 const DEFAULT_INPUTS: ProjectionInputs = {
   currentAge: 30,
@@ -87,13 +88,22 @@ export default function InputPage() {
               <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>{today}</p>
               <p style={{ fontSize: "11px", color: "#999", marginTop: "4px" }}>Modelled projections only — not financial advice</p>
             </div>
-            <PDFExportButton
-              inputs={pdfInputs}
-              rows={result.rows}
-              retirementBalance={result.finalBalance}
-              annualRetirementIncome={result.estimatedAnnualIncome}
-              balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
-            />
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <PDFExportButton
+                inputs={pdfInputs}
+                rows={result.rows}
+                retirementBalance={result.finalBalance}
+                annualRetirementIncome={result.estimatedAnnualIncome}
+                balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
+              />
+              <XLSXExportButton
+                inputs={pdfInputs}
+                rows={result.rows}
+                retirementBalance={result.finalBalance}
+                annualRetirementIncome={result.estimatedAnnualIncome}
+                balanceWithoutVoluntary={resultNoVoluntary.finalBalance}
+              />
+            </div>
           </div>
         </div>
 
