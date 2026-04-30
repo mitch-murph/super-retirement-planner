@@ -1,19 +1,48 @@
-# Super Retirement Planner (scaffold)
+# Super Retirement Planner
 
-This repository contains the scaffold for a Vite + React + TypeScript client-side app.
+Lightweight Vite + React + TypeScript scaffold for a client-side superannuation projection and PDF report tool.
 
-Next steps:
+Quick overview:
+- Pure-TS calculation engine under src/engine
+- UI components under src/components
+- PDF templates under src/pdf
+- Lightweight SVG charts and vanilla CSS
+- No backend required — fully client-side
 
-- Run `npm install` to install dependencies.
-- Run `npm run dev` to start the dev server.
-- Implement the calculation engine under `src/engine` and UI under `src/components`.
+Quick start:
+1. Install dependencies
+   npm install
+2. Run dev server
+   npm run dev
+3. Build production bundle
+   npm run build
+4. Type-check
+   npm run type-check
+5. Run tests (if added)
+   npm run test
 
-Created files:
+Where to implement core pieces:
+- Calculation engine: src/engine — pure functions, export types
+- Types: src/types.ts
+- App entry: src/main.tsx and src/App.tsx
+- UI: src/components and src/pages
+- PDF export templates: src/pdf (uses @react-pdf/renderer)
 
-- [package.json](package.json)
-- [vite.config.ts](vite.config.ts)
-- [tsconfig.json](tsconfig.json)
-- [index.html](index.html)
-- [src/main.tsx](src/main.tsx)
-- [src/App.tsx](src/App.tsx)
-- [src/types.ts](src/types.ts)
+Project files:
+- super-retirement-planner.md — detailed product & design spec (read this first)
+- package.json, vite.config.ts, tsconfig.json — build config
+- src/* — application source
+
+Goals & conventions:
+- Keep calculation logic pure and testable
+- Prefer explicit TypeScript types for domain models
+- UI is a thin layer over the engine outputs
+- Deterministic outputs for same inputs
+
+Contributing:
+- Open a branch per feature or bugfix
+- Keep commits small and focused
+- Add unit tests for calculation logic
+
+License:
+- Add an appropriate license file (e.g. MIT) if you plan to open-source this project.
